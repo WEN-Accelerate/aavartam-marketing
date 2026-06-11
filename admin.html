@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategem — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090E;
+      --surface: #111118;
+      --card: #1C1C26;
+      --elevated: #22222E;
+      --border: rgba(255,255,255,0.08);
+      --border-bright: rgba(255,255,255,0.14);
+      --accent: #00C9A7;
+      --accent-dim: rgba(0,201,167,0.12);
+      --amber: #F5A623;
+      --red: #EF4444;
+      --green: #22C55E;
+      --text: #F2F1EE;
+      --text-secondary: #A8A7A3;
+      --text-muted: #6B6A66;
+      --font: 'Inter', system-ui, sans-serif;
+      --radius: 8px;
+      --radius-lg: 14px;
+      --tr: 0.2s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+    /* ── LOGIN SCREEN ── */
+    #login-screen {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000;
+    }
+    .login-card {
+      background: var(--card);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      width: 100%; max-width: 380px;
+    }
+    .login-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 1.1rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .logo-mark {
+      width: 26px; height: 26px;
+      background: var(--accent); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 14px; height: 14px; color: #09090E; }
+    .login-card h1 { font-size: 1.35rem; font-weight: 600; margin-top: 1.5rem; }
+    .login-card p { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.35rem; }
+    .form-group { margin-top: 1.5rem; }
+    .form-group label { font-size: 0.78rem; font-weight: 500; color: var(--text-secondary); display: block; margin-bottom: 0.45rem; }
+    .form-control {
+      width: 100%; padding: 0.65rem 0.85rem;
+      background: var(--elevated); border: 1px solid var(--border-bright);
+      border-radius: var(--radius); color: var(--text); font-family: var(--font); font-size: 0.9rem;
+      outline: none; transition: border-color var(--tr);
+    }
+    .form-control:focus { border-color: var(--accent); }
+    .btn-login {
+      width: 100%; margin-top: 1.25rem;
+      padding: 0.7rem; background: var(--accent);
+      border: none; border-radius: var(--radius);
+      color: #09090E; font-weight: 600; font-size: 0.9rem; font-family: var(--font);
+      cursor: pointer; transition: background var(--tr);
+    }
+    .btn-login:hover { background: #00e0ba; }
+    #login-error {
+      color: var(--red); font-size: 0.8rem; margin-top: 0.75rem;
+      text-align: center; display: none;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    #app { display: none; min-height: 100vh; }
+    #app.visible { display: flex; }
+
+    .sidebar {
+      width: 240px; min-width: 240px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; bottom: 0; left: 0;
+      overflow-y: auto;
+    }
+    .sidebar-header {
+      padding: 1.25rem 1.25rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 600; color: var(--text); margin-bottom: 0.25rem;
+    }
+    .sidebar-subtitle { font-size: 0.72rem; color: var(--text-muted); }
+
+    .nav-section { padding: 1rem 0.75rem 0.5rem; }
+    .nav-section-label {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--text-muted);
+      padding: 0 0.5rem; margin-bottom: 0.35rem;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.5rem 0.65rem; border-radius: var(--radius);
+      color: var(--text-secondary); font-size: 0.85rem;
+      cursor: pointer; transition: all var(--tr); user-select: none;
+    }
+    .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-item.active { color: var(--text); background: var(--card); }
+    .nav-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .nav-badge {
+      margin-left: auto; font-size: 0.65rem; font-weight: 600;
+      background: var(--accent-dim); color: var(--accent);
+      border: 1px solid rgba(0,201,167,0.2);
+      padding: 0.1rem 0.4rem; border-radius: 100px;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .sidebar-footer .logout-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--text-muted);
+      cursor: pointer; transition: color var(--tr);
+    }
+    .sidebar-footer .logout-btn:hover { color: var(--red); }
+    .sidebar-footer .logout-btn svg { width: 14px; height: 14px; }
+
+    /* ── MAIN CONTENT ── */
+    .main { margin-left: 240px; flex: 1; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(9,9,14,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar-title { font-size: 1rem; font-weight: 600; }
+    .topbar-actions { display: flex; gap: 0.6rem; }
+
+    .btn-sm {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.9rem; border-radius: var(--radius);
+      font-size: 0.82rem; font-weight: 500; font-family: var(--font);
+      cursor: pointer; transition: all var(--tr); border: none;
+    }
+    .btn-primary { background: var(--accent); color: #09090E; font-weight: 600; }
+    .btn-primary:hover { background: #00e0ba; }
+    .btn-secondary { background: var(--card); color: var(--text-secondary); border: 1px solid var(--border-bright); }
+    .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .btn-sm svg { width: 13px; height: 13px; }
+
+    .content { padding: 2rem; flex: 1; }
+
+    /* ── PANELS ── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── DASHBOARD OVERVIEW ── */
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .kpi-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.25rem;
+    }
+    .kpi-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .kpi-value { font-size: 1.75rem; font-weight: 300; color: var(--text); margin-top: 0.25rem; }
+    .kpi-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* ── EDIT FORM ── */
+    .edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .field-group {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.5rem;
+    }
+    .field-group-title {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 1.25rem; padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .field { margin-bottom: 1rem; }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      font-size: 0.75rem; font-weight: 500; color: var(--text-secondary);
+      display: block; margin-bottom: 0.35rem;
+    }
+    .field-input, .field-textarea {
+      width: 100%; padding: 0.55rem 0.75rem;
+      background: var(--elevated); border: 1px solid var(--border-bright);
+      border-radius: var(--radius); color: var(--text); font-family: var(--font); font-size: 0.87rem;
+      outline: none; transition: border-color var(--tr);
+    }
+    .field-input:focus, .field-textarea:focus { border-color: var(--accent); }
+    .field-textarea { resize: vertical; min-height: 80px; line-height: 1.55; }
+    .field-hint { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+    /* Toggle switch */
+    .field-toggle { display: flex; align-items: center; justify-content: space-between; }
+    .toggle-switch {
+      position: relative; width: 40px; height: 22px; flex-shrink: 0;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; inset: 0;
+      background: var(--elevated); border: 1px solid var(--border-bright);
+      border-radius: 100px; cursor: pointer; transition: var(--tr);
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute; width: 14px; height: 14px;
+      left: 3px; top: 3px;
+      background: var(--text-muted); border-radius: 50%;
+      transition: var(--tr);
+    }
+    .toggle-switch input:checked + .toggle-slider { background: var(--accent-dim); border-color: var(--accent); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--accent); }
+
+    /* Toast */
+    #toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--card); border: 1px solid var(--border-bright);
+      border-radius: var(--radius); padding: 0.75rem 1.25rem;
+      font-size: 0.875rem; color: var(--text);
+      display: flex; align-items: center; gap: 0.6rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateY(12px); opacity: 0;
+      transition: all 0.3s ease; pointer-events: none; z-index: 999;
+    }
+    #toast.show { transform: none; opacity: 1; }
+    #toast .toast-icon { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    #toast.success .toast-icon { background: rgba(34,197,94,0.2); color: var(--green); }
+    #toast.error .toast-icon { background: rgba(239,68,68,0.2); color: var(--red); }
+
+    /* Section visibility grid */
+    .visibility-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .vis-item {
+      background: var(--elevated); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0.75rem 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .vis-label { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* Status bar */
+    .status-bar {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.6rem 1.25rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 1.5rem;
+      font-size: 0.8rem; color: var(--text-muted);
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse2 2s infinite; }
+    @keyframes pulse2 { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+    /* Preview frame */
+    .preview-wrap {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .preview-header {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.78rem; color: var(--text-muted);
+    }
+    .preview-header .preview-dots { display: flex; gap: 6px; }
+    .preview-header .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .preview-header .pd-r { background: var(--red); opacity:0.7; }
+    .preview-header .pd-a { background: var(--amber); opacity:0.7; }
+    .preview-header .pd-g { background: var(--green); opacity:0.7; }
+    .preview-url {
+      flex: 1; text-align: center; background: var(--elevated);
+      padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem;
+      margin: 0 1rem; color: var(--text-secondary);
+    }
+    iframe.preview-frame {
+      width: 100%; height: 580px; border: none; display: block;
+      transform-origin: top left;
+    }
+
+    /* Changelog */
+    .changelog-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .change-item {
+      background: var(--elevated); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0.75rem 1rem;
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.83rem;
+    }
+    .change-time { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; margin-top: 1px; }
+    .change-action { flex: 1; color: var(--text-secondary); }
+    .change-action strong { color: var(--text); }
+
+    @media (max-width: 1100px) { .edit-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; }
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- LOGIN SCREEN                                                  -->
+<!-- ============================================================ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L8 3L13 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5H10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      Strategem
+    </div>
+    <h1>Admin Panel</h1>
+    <p>Sign in to manage your marketing site content</p>
+    <div class="form-group">
+      <label for="pwd-input">Password</label>
+      <input type="password" id="pwd-input" class="form-control" placeholder="Enter admin password" autocomplete="current-password">
+    </div>
+    <button class="btn-login" id="login-btn">Sign In</button>
+    <p id="login-error">Incorrect password. Please try again.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MAIN APP                                                      -->
+<!-- ============================================================ -->
+<div id="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L8 3L13 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5H10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        Strategem
+      </div>
+      <div class="sidebar-subtitle">Content Management</div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Overview</div>
+      <div class="nav-item active" data-panel="dashboard">
+        <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+        Dashboard
+      </div>
+      <div class="nav-item" data-panel="preview">
+        <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M6 13h4M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Live Preview
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Content</div>
+      <div class="nav-item" data-panel="hero">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Hero Section
+      </div>
+      <div class="nav-item" data-panel="problem">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3.5M8 10.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Problem & How-It-Works
+      </div>
+      <div class="nav-item" data-panel="features">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 4h4L10 9l1.5 4L8 11 4.5 13 6 9 2.5 6h4L8 2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        Features & Agents
+      </div>
+      <div class="nav-item" data-panel="stats">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M2 12l3-4 3 2 3-5 3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Stats & Testimonials
+      </div>
+      <div class="nav-item" data-panel="pricing">
+        <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 7h12" stroke="currentColor" stroke-width="1.3"/></svg>
+        Pricing
+      </div>
+      <div class="nav-item" data-panel="cta">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h10M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        CTA & Footer
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Settings</div>
+      <div class="nav-item" data-panel="sections">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Section Visibility
+      </div>
+      <div class="nav-item" data-panel="changelog">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Change Log
+        <span class="nav-badge" id="changelog-badge">0</span>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="logout-btn" id="logout-btn">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M5 8h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Sign out
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <span class="topbar-title" id="topbar-title">Dashboard</span>
+      <div class="topbar-actions">
+        <button class="btn-sm btn-secondary" id="reset-btn">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M13 8A5 5 0 103 8M3 5V8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Reset to defaults
+        </button>
+        <button class="btn-sm btn-primary" id="save-btn">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Save changes
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <div class="panel active" id="panel-dashboard">
+        <div class="status-bar">
+          <span class="status-dot"></span>
+          <span>Content synced via localStorage</span>
+          <span>·</span>
+          <span id="status-lastsaved">No saves yet this session</span>
+          <span>·</span>
+          <a href="index.html" target="_blank" style="color:var(--accent);text-decoration:none;">View live site ↗</a>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-label">Content fields</div>
+            <div class="kpi-value" id="kpi-fields">0</div>
+            <div class="kpi-sub">Editable keys in content.json</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Unsaved changes</div>
+            <div class="kpi-value" id="kpi-changes" style="color:var(--amber)">0</div>
+            <div class="kpi-sub">Modified since last save</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Sections visible</div>
+            <div class="kpi-value" id="kpi-sections" style="color:var(--accent)">10</div>
+            <div class="kpi-sub">Active page sections</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Last saved</div>
+            <div class="kpi-value" style="font-size:1rem;" id="kpi-lastmod">—</div>
+            <div class="kpi-sub">Local session storage</div>
+          </div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;">
+          <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">Quick Actions</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;">
+            <button class="btn-sm btn-secondary" style="justify-content:flex-start;padding:0.85rem 1rem;" onclick="switchPanel('hero')">
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              Edit hero copy
+            </button>
+            <button class="btn-sm btn-secondary" style="justify-content:flex-start;padding:0.85rem 1rem;" onclick="switchPanel('pricing')">
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 7h12" stroke="currentColor" stroke-width="1.3"/></svg>
+              Update pricing
+            </button>
+            <button class="btn-sm btn-secondary" style="justify-content:flex-start;padding:0.85rem 1rem;" onclick="switchPanel('stats')">
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 12l3-4 3 2 3-5 3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Edit testimonials
+            </button>
+            <button class="btn-sm btn-secondary" style="justify-content:flex-start;padding:0.85rem 1rem;" onclick="switchPanel('sections')">
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              Section visibility
+            </button>
+            <button class="btn-sm btn-secondary" style="justify-content:flex-start;padding:0.85rem 1rem;" onclick="switchPanel('preview')">
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><rect x="2" y="3" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M6 13h4M8 12v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              Live preview
+            </button>
+            <a href="index.html" target="_blank" class="btn-sm btn-secondary" style="justify-content:flex-start;padding:0.85rem 1rem;text-decoration:none;">
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M7 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1V9M9 2h5v5M14 2l-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Open live site
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE PREVIEW -->
+      <div class="panel" id="panel-preview">
+        <div class="preview-wrap">
+          <div class="preview-header">
+            <div class="preview-dots">
+              <span class="preview-dot pd-r"></span>
+              <span class="preview-dot pd-a"></span>
+              <span class="preview-dot pd-g"></span>
+            </div>
+            <span class="preview-url">index.html</span>
+            <button class="btn-sm btn-secondary" onclick="document.querySelector('#panel-preview iframe').src += ''">
+              <svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M13 8A5 5 0 103 8M3 5V8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Refresh
+            </button>
+          </div>
+          <iframe class="preview-frame" src="index.html" title="Marketing page preview"></iframe>
+        </div>
+      </div>
+
+      <!-- HERO SECTION -->
+      <div class="panel" id="panel-hero">
+        <div class="edit-grid">
+          <div class="field-group">
+            <div class="field-group-title">Headline & Sub-copy</div>
+            <div class="field">
+              <label>Page title (browser tab)</label>
+              <input type="text" class="field-input" data-key="page_title">
+            </div>
+            <div class="field">
+              <label>Eyebrow badge text</label>
+              <input type="text" class="field-input" data-key="hero_eyebrow">
+            </div>
+            <div class="field">
+              <label>Headline line 1</label>
+              <input type="text" class="field-input" data-key="hero_headline_1">
+            </div>
+            <div class="field">
+              <label>Headline emphasis (teal italics)</label>
+              <input type="text" class="field-input" data-key="hero_headline_em">
+            </div>
+            <div class="field">
+              <label>Sub-headline paragraph</label>
+              <textarea class="field-textarea" data-key="hero_sub"></textarea>
+            </div>
+            <div class="field">
+              <label>Note below CTAs</label>
+              <input type="text" class="field-input" data-key="hero_note">
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">CTAs & Stats</div>
+            <div class="field">
+              <label>Primary CTA button text</label>
+              <input type="text" class="field-input" data-key="hero_cta_primary">
+            </div>
+            <div class="field">
+              <label>Secondary CTA button text</label>
+              <input type="text" class="field-input" data-key="hero_cta_secondary">
+            </div>
+            <div class="field">
+              <label>Nav CTA text</label>
+              <input type="text" class="field-input" data-key="nav_cta">
+            </div>
+            <div class="field">
+              <label>Stat 1 — value</label>
+              <input type="text" class="field-input" data-key="stat_1_val" placeholder="e.g. 10×">
+            </div>
+            <div class="field">
+              <label>Stat 1 — label</label>
+              <input type="text" class="field-input" data-key="stat_1_label">
+            </div>
+            <div class="field">
+              <label>Stat 2 — value</label>
+              <input type="text" class="field-input" data-key="stat_2_val">
+            </div>
+            <div class="field">
+              <label>Stat 2 — label</label>
+              <input type="text" class="field-input" data-key="stat_2_label">
+            </div>
+            <div class="field">
+              <label>Stat 3 — value</label>
+              <input type="text" class="field-input" data-key="stat_3_val">
+            </div>
+            <div class="field">
+              <label>Stat 3 — label</label>
+              <input type="text" class="field-input" data-key="stat_3_label">
+            </div>
+            <div class="field">
+              <label>Stat 4 — value</label>
+              <input type="text" class="field-input" data-key="stat_4_val">
+            </div>
+            <div class="field">
+              <label>Stat 4 — label</label>
+              <input type="text" class="field-input" data-key="stat_4_label">
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">Trust Bar</div>
+            <div class="field">
+              <label>Trust bar intro label</label>
+              <input type="text" class="field-input" data-key="trust_label">
+            </div>
+            <div class="field"><label>Trust 1</label><input type="text" class="field-input" data-key="trust_1"></div>
+            <div class="field"><label>Trust 2</label><input type="text" class="field-input" data-key="trust_2"></div>
+            <div class="field"><label>Trust 3</label><input type="text" class="field-input" data-key="trust_3"></div>
+            <div class="field"><label>Trust 4</label><input type="text" class="field-input" data-key="trust_4"></div>
+            <div class="field"><label>Trust 5</label><input type="text" class="field-input" data-key="trust_5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROBLEM & HIW -->
+      <div class="panel" id="panel-problem">
+        <div class="edit-grid">
+          <div class="field-group">
+            <div class="field-group-title">Problem Section</div>
+            <div class="field"><label>Main headline</label><textarea class="field-textarea" data-key="problem_headline" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Sub-copy</label><textarea class="field-textarea" data-key="problem_sub"></textarea></div>
+            <div class="field"><label>Pain point 1 — title</label><input type="text" class="field-input" data-key="prob1_title"></div>
+            <div class="field"><label>Pain point 1 — body</label><textarea class="field-textarea" data-key="prob1_body" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Pain point 2 — title</label><input type="text" class="field-input" data-key="prob2_title"></div>
+            <div class="field"><label>Pain point 2 — body</label><textarea class="field-textarea" data-key="prob2_body" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Pain point 3 — title</label><input type="text" class="field-input" data-key="prob3_title"></div>
+            <div class="field"><label>Pain point 3 — body</label><textarea class="field-textarea" data-key="prob3_body" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Pain point 4 — title</label><input type="text" class="field-input" data-key="prob4_title"></div>
+            <div class="field"><label>Pain point 4 — body</label><textarea class="field-textarea" data-key="prob4_body" style="min-height:60px;"></textarea></div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">How It Works</div>
+            <div class="field"><label>Section headline</label><textarea class="field-textarea" data-key="hiw_headline" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Step 1 — title</label><input type="text" class="field-input" data-key="step1_title"></div>
+            <div class="field"><label>Step 1 — body</label><textarea class="field-textarea" data-key="step1_body" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Step 2 — title</label><input type="text" class="field-input" data-key="step2_title"></div>
+            <div class="field"><label>Step 2 — body</label><textarea class="field-textarea" data-key="step2_body" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Step 3 — title</label><input type="text" class="field-input" data-key="step3_title"></div>
+            <div class="field"><label>Step 3 — body</label><textarea class="field-textarea" data-key="step3_body" style="min-height:60px;"></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURES & AGENTS -->
+      <div class="panel" id="panel-features">
+        <div class="edit-grid">
+          <div class="field-group">
+            <div class="field-group-title">Features Section Header</div>
+            <div class="field"><label>Headline</label><textarea class="field-textarea" data-key="feat_headline" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Sub-copy</label><textarea class="field-textarea" data-key="feat_sub"></textarea></div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">Use Cases Section Header</div>
+            <div class="field"><label>Headline</label><textarea class="field-textarea" data-key="usecases_headline" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Sub-copy</label><textarea class="field-textarea" data-key="usecases_sub"></textarea></div>
+          </div>
+          <div class="field-group" style="grid-column:1/-1;">
+            <div class="field-group-title">AI Agents Section</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="field"><label>Headline</label><textarea class="field-textarea" data-key="agents_headline" style="min-height:60px;"></textarea></div>
+              <div class="field"><label>Sub-copy</label><textarea class="field-textarea" data-key="agents_sub" style="min-height:60px;"></textarea></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS & TESTIMONIALS -->
+      <div class="panel" id="panel-stats">
+        <div class="edit-grid">
+          <div class="field-group">
+            <div class="field-group-title">Numbers Section</div>
+            <div class="field"><label>Headline</label><textarea class="field-textarea" data-key="stats_headline" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Sub-copy</label><textarea class="field-textarea" data-key="stats_sub"></textarea></div>
+            <div class="field"><label>Big number 1</label><input type="text" class="field-input" data-key="bignumber_1" placeholder="e.g. 95%"></div>
+            <div class="field"><label>Big number 2</label><input type="text" class="field-input" data-key="bignumber_2" placeholder="e.g. 10×"></div>
+            <div class="field"><label>Big number 3</label><input type="text" class="field-input" data-key="bignumber_3" placeholder="e.g. 3 hrs"></div>
+            <div class="field"><label>Big number 4</label><input type="text" class="field-input" data-key="bignumber_4" placeholder="e.g. $0"></div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">Testimonials</div>
+            <div class="field"><label>Testimonial 1 — name</label><input type="text" class="field-input" data-key="t1_name"></div>
+            <div class="field"><label>Testimonial 1 — role</label><input type="text" class="field-input" data-key="t1_role"></div>
+            <div class="field"><label>Testimonial 2 — name</label><input type="text" class="field-input" data-key="t2_name"></div>
+            <div class="field"><label>Testimonial 2 — role</label><input type="text" class="field-input" data-key="t2_role"></div>
+            <div class="field"><label>Testimonial 3 — name</label><input type="text" class="field-input" data-key="t3_name"></div>
+            <div class="field"><label>Testimonial 3 — role</label><input type="text" class="field-input" data-key="t3_role"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRICING -->
+      <div class="panel" id="panel-pricing">
+        <div class="edit-grid">
+          <div class="field-group" style="grid-column:1/-1;">
+            <div class="field-group-title">Pricing Section Header</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="field"><label>Headline</label><textarea class="field-textarea" data-key="pricing_headline" style="min-height:60px;"></textarea></div>
+              <div class="field"><label>Sub-copy</label><textarea class="field-textarea" data-key="pricing_sub" style="min-height:60px;"></textarea></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">Starter Plan</div>
+            <div class="field"><label>Plan subtitle</label><input type="text" class="field-input" data-key="price1_name"></div>
+            <div class="field"><label>Monthly price (digits only)</label><input type="text" class="field-input" data-key="price1_amount" placeholder="e.g. 5,000"><div class="field-hint">Annual price updates automatically (−20%)</div></div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">Growth Plan</div>
+            <div class="field"><label>Plan subtitle</label><input type="text" class="field-input" data-key="price2_name"></div>
+            <div class="field"><label>Monthly price (digits only)</label><input type="text" class="field-input" data-key="price2_amount" placeholder="e.g. 10,000"></div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">Enterprise Plan</div>
+            <div class="field"><label>Plan subtitle</label><input type="text" class="field-input" data-key="price3_name"></div>
+            <div class="field"><label>Price text</label><input type="text" class="field-input" data-key="price3_amount" placeholder="e.g. On request"></div>
+            <div class="field"><label>Sub-text under price</label><input type="text" class="field-input" data-key="price3_annual"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA & FOOTER -->
+      <div class="panel" id="panel-cta">
+        <div class="edit-grid">
+          <div class="field-group">
+            <div class="field-group-title">Final CTA Section</div>
+            <div class="field"><label>Headline</label><textarea class="field-textarea" data-key="cta_headline" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Body copy</label><textarea class="field-textarea" data-key="cta_body"></textarea></div>
+            <div class="field"><label>Primary CTA text</label><input type="text" class="field-input" data-key="cta_primary"></div>
+            <div class="field"><label>Secondary CTA text</label><input type="text" class="field-input" data-key="cta_secondary"></div>
+            <div class="field"><label>Footer note</label><input type="text" class="field-input" data-key="cta_note"></div>
+          </div>
+          <div class="field-group">
+            <div class="field-group-title">Footer</div>
+            <div class="field"><label>Brand name</label><input type="text" class="field-input" data-key="footer_brand"></div>
+            <div class="field"><label>Tagline</label><textarea class="field-textarea" data-key="footer_tagline" style="min-height:60px;"></textarea></div>
+            <div class="field"><label>Copyright line</label><input type="text" class="field-input" data-key="footer_copy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION VISIBILITY -->
+      <div class="panel" id="panel-sections">
+        <div class="field-group" style="max-width:700px;">
+          <div class="field-group-title">Toggle page sections on / off</div>
+          <div class="visibility-grid" id="visibility-grid"></div>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-top:1.25rem;">
+            Changes take effect immediately after saving. Hidden sections are removed from the live page.
+          </p>
+        </div>
+      </div>
+
+      <!-- CHANGELOG -->
+      <div class="panel" id="panel-changelog">
+        <div style="max-width:700px;">
+          <div class="changelog-list" id="changelog-list">
+            <p style="color:var(--text-muted);font-size:0.85rem;padding:1rem 0;">No changes recorded yet this session.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </main><!-- /main -->
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div id="toast">
+  <div class="toast-icon">
+    <svg viewBox="0 0 14 14" fill="none" width="10" height="10"><path d="M2 7l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <span id="toast-msg">Saved successfully</span>
+</div>
+
+<script>
+  /* ============================================================
+     CONFIG
+  ============================================================ */
+  const ADMIN_PASSWORD = 'aavartam2025';
+  const STORAGE_KEY = 'aavartam_content';
+
+  /* ============================================================
+     DEFAULTS — will be overridden from content.json or localStorage
+  ============================================================ */
+  let defaults = {};
+  let currentData = {};
+  let changelog = [];
+  let unsavedCount = 0;
+
+  /* ============================================================
+     LOAD content.json DEFAULTS
+  ============================================================ */
+  async function loadDefaults() {
+    try {
+      const r = await fetch('content.json');
+      defaults = await r.json();
+    } catch(e) {
+      console.warn('Could not load content.json, using built-in defaults');
+      defaults = {};
+    }
+
+    // Merge: localStorage overrides defaults
+    const stored = localStorage.getItem(STORAGE_KEY);
+    currentData = stored ? { ...defaults, ...JSON.parse(stored) } : { ...defaults };
+
+    populateAllFields();
+    updateKPIs();
+    buildVisibilityGrid();
+  }
+
+  /* ============================================================
+     FIELD POPULATION
+  ============================================================ */
+  function populateAllFields() {
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if (currentData[key] !== undefined) {
+        el.value = currentData[key];
+      }
+    });
+  }
+
+  /* ============================================================
+     VISIBILITY GRID
+  ============================================================ */
+  const SECTION_LABELS = {
+    trust_bar: 'Trust Bar',
+    problem: 'Problem Section',
+    how_it_works: 'How It Works',
+    features: 'Features Grid',
+    use_cases: 'Use Cases / Who It\'s For',
+    agents: 'AI Agents Grid',
+    stats: 'Stats & Numbers',
+    testimonials: 'Testimonials',
+    pricing: 'Pricing',
+    faq: 'FAQ'
+  };
+
+  function buildVisibilityGrid() {
+    const grid = document.getElementById('visibility-grid');
+    grid.innerHTML = '';
+    const vis = currentData._sections_visible || {};
+    Object.entries(SECTION_LABELS).forEach(([key, label]) => {
+      const val = vis[key] !== false;
+      const item = document.createElement('div');
+      item.className = 'vis-item';
+      item.innerHTML = `
+        <span class="vis-label">${label}</span>
+        <label class="toggle-switch">
+          <input type="checkbox" data-vis-key="${key}" ${val ? 'checked' : ''}>
+          <span class="toggle-slider"></span>
+        </label>
+      `;
+      grid.appendChild(item);
+    });
+
+    grid.querySelectorAll('input[data-vis-key]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (!currentData._sections_visible) currentData._sections_visible = {};
+        currentData._sections_visible[cb.dataset.visKey] = cb.checked;
+        markDirty(`Section "${SECTION_LABELS[cb.dataset.visKey]}" ${cb.checked ? 'shown' : 'hidden'}`);
+      });
+    });
+  }
+
+  /* ============================================================
+     DIRTY TRACKING
+  ============================================================ */
+  function markDirty(description) {
+    unsavedCount++;
+    document.getElementById('kpi-changes').textContent = unsavedCount;
+    const now = new Date().toLocaleTimeString();
+    changelog.unshift({ time: now, action: description });
+    updateChangelog();
+  }
+
+  function updateChangelog() {
+    const badge = document.getElementById('changelog-badge');
+    badge.textContent = changelog.length;
+    const list = document.getElementById('changelog-list');
+    if (!changelog.length) {
+      list.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;padding:1rem 0;">No changes recorded yet this session.</p>';
+      return;
+    }
+    list.innerHTML = changelog.slice(0, 50).map(c => `
+      <div class="change-item">
+        <span class="change-time">${c.time}</span>
+        <span class="change-action">${c.action}</span>
+      </div>
+    `).join('');
+  }
+
+  /* ============================================================
+     KPIs
+  ============================================================ */
+  function updateKPIs() {
+    const keys = Object.keys(defaults).filter(k => !k.startsWith('_'));
+    document.getElementById('kpi-fields').textContent = keys.length;
+    const vis = currentData._sections_visible || {};
+    const visCount = Object.values(vis).filter(Boolean).length;
+    document.getElementById('kpi-sections').textContent = visCount;
+    document.getElementById('kpi-changes').textContent = unsavedCount;
+  }
+
+  /* ============================================================
+     FIELD CHANGE LISTENERS
+  ============================================================ */
+  function attachFieldListeners() {
+    document.querySelectorAll('[data-key]').forEach(el => {
+      el.addEventListener('input', () => {
+        const key = el.getAttribute('data-key');
+        const oldVal = currentData[key] || '';
+        const newVal = el.value;
+        if (oldVal !== newVal) {
+          currentData[key] = newVal;
+          markDirty(`Updated <strong>${key}</strong>`);
+        }
+      });
+    });
+  }
+
+  /* ============================================================
+     SAVE
+  ============================================================ */
+  function saveChanges() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(currentData));
+    unsavedCount = 0;
+    document.getElementById('kpi-changes').textContent = 0;
+    const now = new Date().toLocaleTimeString();
+    document.getElementById('status-lastsaved').textContent = `Last saved at ${now}`;
+    document.getElementById('kpi-lastmod').textContent = now;
+    showToast('Changes saved — reload index.html to see updates', 'success');
+    changelog.unshift({ time: now, action: '<strong>All changes saved</strong> to localStorage' });
+    updateChangelog();
+  }
+
+  /* ============================================================
+     RESET TO DEFAULTS
+  ============================================================ */
+  function resetToDefaults() {
+    if (!confirm('Reset all content to the defaults from content.json? This cannot be undone.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    currentData = { ...defaults };
+    unsavedCount = 0;
+    populateAllFields();
+    updateKPIs();
+    buildVisibilityGrid();
+    showToast('Reset to defaults', 'success');
+    changelog.unshift({ time: new Date().toLocaleTimeString(), action: '<strong>Content reset</strong> to defaults' });
+    updateChangelog();
+  }
+
+  /* ============================================================
+     TOAST
+  ============================================================ */
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.className = type;
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  /* ============================================================
+     PANEL SWITCHING
+  ============================================================ */
+  const PANEL_TITLES = {
+    dashboard: 'Dashboard',
+    preview: 'Live Preview',
+    hero: 'Hero Section',
+    problem: 'Problem & How-It-Works',
+    features: 'Features & Agents',
+    stats: 'Stats & Testimonials',
+    pricing: 'Pricing',
+    cta: 'CTA & Footer',
+    sections: 'Section Visibility',
+    changelog: 'Change Log'
+  };
+
+  function switchPanel(name) {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.panel === name));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === `panel-${name}`));
+    document.getElementById('topbar-title').textContent = PANEL_TITLES[name] || name;
+  }
+
+  document.querySelectorAll('.nav-item[data-panel]').forEach(item => {
+    item.addEventListener('click', () => switchPanel(item.dataset.panel));
+  });
+
+  /* ============================================================
+     LOGIN
+  ============================================================ */
+  document.getElementById('login-btn').addEventListener('click', attemptLogin);
+  document.getElementById('pwd-input').addEventListener('keydown', e => { if (e.key === 'Enter') attemptLogin(); });
+
+  function attemptLogin() {
+    const pwd = document.getElementById('pwd-input').value;
+    if (pwd === ADMIN_PASSWORD) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').classList.add('visible');
+      loadDefaults().then(attachFieldListeners);
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+      document.getElementById('pwd-input').style.borderColor = 'var(--red)';
+      setTimeout(() => document.getElementById('pwd-input').style.borderColor = '', 2000);
+    }
+  }
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('app').classList.remove('visible');
+    document.getElementById('pwd-input').value = '';
+  });
+
+  /* ============================================================
+     SAVE / RESET BUTTONS
+  ============================================================ */
+  document.getElementById('save-btn').addEventListener('click', saveChanges);
+  document.getElementById('reset-btn').addEventListener('click', resetToDefaults);
+
+  /* ============================================================
+     KEYBOARD SHORTCUT  Ctrl/Cmd + S
+  ============================================================ */
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      if (document.getElementById('app').classList.contains('visible')) saveChanges();
+    }
+  });
+</script>
+</body>
+</html>

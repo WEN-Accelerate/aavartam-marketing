@@ -1,0 +1,62 @@
+# Netlify configuration for Strategem Marketing Site
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # No build step needed — pure HTML/CSS/JS
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# ── Security headers ────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# ── Cache control ────────────────────────────────────────────────
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/admin.html"
+  [headers.values]
+    Cache-Control = "no-store, no-cache"
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/content.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Content-Type = "application/json; charset=utf-8"
+
+# ── Redirects ────────────────────────────────────────────────────
+# www → apex
+[[redirects]]
+  from = "https://www.aavartam-marketing.netlify.app/*"
+  to   = "https://aavartam-marketing.netlify.app/:splat"
+  status = 301
+  force  = true
+
+# Alias paths
+[[redirects]]
+  from   = "/cms"
+  to     = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from   = "/admin"
+  to     = "/admin.html"
+  status = 200
+
+# 404 → index for SPA fallback (if needed later)
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404

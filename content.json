@@ -1,0 +1,111 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "last_updated": "2026-06-08",
+    "updated_by": "admin"
+  },
+  "page_title": "Strategem — Like having a strategy team on every engagement",
+  "nav_brand": "Strategem",
+  "nav_cta": "Book a Demo",
+
+  "hero_eyebrow": "AI Strategy Platform · Built for practitioners",
+  "hero_headline_1": "Like having a strategy team",
+  "hero_headline_em": "every engagement",
+  "hero_sub": "Strategem brings AI research agents, live engagement tracking, automated slide decks and virtual consultant sessions into one workspace — so your firm delivers better outcomes, without adding headcount.",
+  "hero_cta_primary": "Book a Demo",
+  "hero_cta_secondary": "See What's Inside",
+  "hero_note": "No commitment · Reply within 24 hours · Live in 48 hours",
+
+  "stat_1_val": "10×",
+  "stat_1_label": "Faster research",
+  "stat_2_val": "200+",
+  "stat_2_label": "Engagements managed",
+  "stat_3_val": "30+",
+  "stat_3_label": "AI agents",
+  "stat_4_val": "$0",
+  "stat_4_label": "Analyst headcount",
+
+  "trust_label": "Used by",
+  "trust_1": "GOVT. SME PROGRAMME",
+  "trust_2": "MID-MARKET PE FUNDS",
+  "trust_3": "BOUTIQUE ADVISORY",
+  "trust_4": "CORPORATE STRATEGY",
+  "trust_5": "INDEPENDENT CONSULTANTS",
+
+  "problem_headline": "Great strategy shouldn't cost half a million dollars",
+  "problem_sub": "Traditional consulting is slow, fragmented and priced out of reach for most teams. Strategem puts enterprise-grade strategic intelligence into your workflow — so your team spends time on insight, not preparation.",
+  "prob1_title": "Research takes weeks, not hours",
+  "prob1_body": "Competitive analysis, market sizing, risk assessment — analysts spend days on tasks AI agents complete in minutes. That's time stolen from client work.",
+  "prob2_title": "Prep eating into delivery time",
+  "prob2_body": "Consultants spend up to 60% of their time on decks, notes and status updates — not the thinking clients pay for. That ratio needs to flip.",
+  "prob3_title": "Knowledge scattered everywhere",
+  "prob3_body": "Call transcripts in email, strategy docs in Drive, KPIs in spreadsheets. When context lives in silos, every new engagement starts from scratch.",
+  "prob4_title": "No live read on portfolio health",
+  "prob4_body": "Quarterly reviews are already too late. Without a live view across all ventures, risks go unspotted and momentum stalls before anyone notices.",
+
+  "hiw_headline": "From brief to delivery, all in one place",
+  "step1_title": "Onboard the engagement",
+  "step1_body": "Add a venture or client in seconds. Upload transcripts, briefs and financials — AI extracts and structures everything automatically into the knowledge base.",
+  "step2_title": "Research, plan and generate",
+  "step2_body": "Deploy AI agents for competitive intel, market sizing or risk assessment. Generate board-ready slide decks. Run virtual AI consultant sessions grounded in your client's own data.",
+  "step3_title": "Track, check in and stay sharp",
+  "step3_body": "Live RAG health dashboard across every venture, sprint and stream. Weekly AI-summarised check-ins. Your whole portfolio, visible at a glance.",
+
+  "feat_headline": "Everything your strategy practice needs. Nothing it doesn't.",
+  "feat_sub": "Built for the full consulting lifecycle — from first client brief through portfolio-level reporting. No separate tools, no manual handoffs.",
+
+  "usecases_headline": "The right fit for your operating model",
+  "usecases_sub": "Strategem adapts to how you work — whether you run a 200-venture portfolio, a boutique firm, or are flying solo.",
+
+  "agents_headline": "30+ agents. One for every strategic scenario.",
+  "agents_sub": "Purpose-built for consulting work — not generic chat. Each agent knows the methodology, the output format and the standard a senior partner would hold it to.",
+
+  "stats_headline": "The numbers speak for themselves",
+  "stats_sub": "One McKinsey engagement runs $150k–$500k. Strategem delivers the same research infrastructure, knowledge management and strategic support — for a monthly subscription that pays for itself in week one.",
+  "bignumber_1": "95%",
+  "bignumber_2": "10×",
+  "bignumber_3": "3 hrs",
+  "bignumber_4": "$0",
+
+  "t1_name": "Romesh K.",
+  "t1_role": "Executive Director, Government SME Programme",
+  "t2_name": "Meetul S.",
+  "t2_role": "Independent Strategy Consultant",
+  "t3_name": "Priya T.",
+  "t3_role": "Head of Strategy, Mid-market PE Fund",
+
+  "pricing_headline": "Straightforward pricing. No per-seat surprises.",
+  "pricing_sub": "All plans include the core platform, AI Workbench and meeting assistant. Upgrade for more AI credits, agents and consultant capacity.",
+  "price1_name": "For Independent Consultants",
+  "price1_amount": "5,000",
+  "price1_annual": "Billed monthly",
+  "price2_name": "For Advisory Firms & Strategy Teams",
+  "price2_amount": "10,000",
+  "price2_annual": "Billed monthly",
+  "price3_name": "For Governments, Funds & Large Programmes",
+  "price3_amount": "On request",
+  "price3_annual": "Priced on ventures, users and custom requirements",
+
+  "cta_headline": "Your next engagement deserves a strategy team",
+  "cta_body": "Strategem gives advisory firms, corporate strategy teams and independent consultants the AI infrastructure to deliver sharper work, faster — without expanding the payroll.",
+  "cta_primary": "Book a Demo",
+  "cta_secondary": "View Pricing",
+  "cta_note": "No commitment · Reply within 24 hours · Live in 48 hours",
+
+  "footer_brand": "Strategem",
+  "footer_tagline": "AI-powered strategy platform for advisory firms, consulting practices, corporate strategy teams and independent consultants.",
+  "footer_copy": "© 2026 Strategem Partners. All rights reserved.",
+
+  "_sections_visible": {
+    "trust_bar": true,
+    "problem": true,
+    "how_it_works": true,
+    "features": true,
+    "use_cases": true,
+    "agents": true,
+    "stats": true,
+    "testimonials": true,
+    "pricing": true,
+    "faq": true
+  }
+}
