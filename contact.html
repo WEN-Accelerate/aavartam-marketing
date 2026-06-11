@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book a demo of Aavartam — the engagement operating platform for consulting firms, independent consultants and corporate strategy teams. Reply within 24 hours.">
+  <meta property="og:title" content="Book a Demo — Aavartam">
+  <meta property="og:description" content="Tell us how you practice and we'll set up a working demo with your engagement types. Reply within 24 hours.">
+  <meta property="og:type" content="website">
+  <title>Book a Demo — Aavartam</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M13.5 8A5.5 5.5 0 1 1 11 3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13.6 1.6v2.6H11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span>Aavartam</span>
+  </a>
+  <div class="nav-links">
+    <a href="platform.html">Platform</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <a href="pricing.html" class="btn btn-ghost">View Plans</a>
+    <a href="contact.html" class="btn btn-primary">Book a Demo</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="platform.html">Platform</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<!-- PAGE HERO + FORM -->
+<section class="page-hero" style="padding-bottom:0">
+  <div class="container">
+    <div class="split" style="align-items:flex-start;padding-top:0">
+      <div class="split-copy">
+        <span class="label">Book a Demo</span>
+        <h1 class="display-lg" style="margin-top:0.75rem">The best demo is<br><em>your own engagement</em></h1>
+        <p class="body-lg" style="margin-top:1.25rem">Tell us how you practice. We'll set up a working demo around your engagement types — and if you bring a live engagement, we'll structure it in Aavartam in front of you.</p>
+        <ul class="split-list" style="margin-top:2rem">
+          <li><strong>Reply within 24 hours</strong> — a real person, with a proposed time and agenda</li>
+          <li><strong>45 minutes, hands-on</strong> — your engagement types, your terminology, your questions</li>
+          <li><strong>Fixed quote after the call</strong> — based on your engagement volume and team size</li>
+        </ul>
+        <div class="quote-card" style="margin-top:2.5rem;max-width:460px">
+          <blockquote>"We brought one stalled engagement to the demo. By the end of the call it had a module plan, a knowledge base and a generated status deck."</blockquote>
+          <div class="who">
+            <div class="avatar">MS</div>
+            <div>
+              <div class="who-name">Meetul S.</div>
+              <div class="who-role">Independent Strategy Consultant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-media" style="padding:2rem">
+        <form name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" class="form-grid">
+          <input type="hidden" name="form-name" value="demo-request">
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="f-name">Your name *</label>
+              <input id="f-name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="form-field">
+              <label for="f-email">Work email *</label>
+              <input id="f-email" name="email" type="email" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="f-firm">Firm / organisation</label>
+              <input id="f-firm" name="firm" type="text" autocomplete="organization">
+            </div>
+            <div class="form-field">
+              <label for="f-segment">Which best describes you? *</label>
+              <select id="f-segment" name="segment" required>
+                <option value="" disabled selected>Select one…</option>
+                <option>Boutique consulting firm</option>
+                <option>Independent consultant</option>
+                <option>Corporate strategy team</option>
+                <option>PE / fund portfolio operations</option>
+                <option>Accelerator / large programme</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="f-volume">Roughly how many active engagements do you run?</label>
+            <select id="f-volume" name="engagement_volume">
+              <option value="" disabled selected>Select one…</option>
+              <option>1–5</option>
+              <option>6–15</option>
+              <option>16–50</option>
+              <option>50+</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="f-message">What would you like to see?</label>
+            <textarea id="f-message" name="message" placeholder="e.g. We run growth strategy engagements for mid-market manufacturers and want partners to see delivery health without chasing status updates…"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="justify-content:center">
+            Request a Demo
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="hero-note" style="text-align:center;margin-top:0.25rem">No commitment · We reply within 24 hours</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" style="margin-top:5rem">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-mark">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M13.5 8A5.5 5.5 0 1 1 11 3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13.6 1.6v2.6H11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span>Aavartam</span>
+        </a>
+        <p><em>Aavartam</em> (Sanskrit): a cycle, a recurring rhythm. The engagement operating platform for consulting firms, independent consultants and corporate strategy teams.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="platform.html#portfolio">Portfolio Command Centre</a></li>
+          <li><a href="platform.html#modules">Modules &amp; Deliverables</a></li>
+          <li><a href="platform.html#workbench">AI Workbench</a></li>
+          <li><a href="platform.html#decks">Deck Generation</a></li>
+          <li><a href="platform.html#virtual">Virtual AI Consultants</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="solutions.html#firms">Boutique Consulting Firms</a></li>
+          <li><a href="solutions.html#independents">Independent Consultants</a></li>
+          <li><a href="solutions.html#corporate">Corporate Strategy &amp; PE</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Book a Demo</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aavartam. All rights reserved.</span>
+      <span>Made for practitioners, by practitioners.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+  <svg viewBox="0 0 16 16" fill="none"><path d="M8 13V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

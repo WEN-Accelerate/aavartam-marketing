@@ -1,4 +1,4 @@
-# Netlify configuration for Strategem Marketing Site
+# Netlify configuration for the Aavartam marketing site
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
@@ -20,9 +20,14 @@
 
 # ── Cache control ────────────────────────────────────────────────
 [[headers]]
-  for = "/index.html"
+  for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/admin.html"
@@ -44,7 +49,7 @@
   status = 301
   force  = true
 
-# Alias paths
+# Legacy admin aliases (admin panel edits the old single-page site)
 [[redirects]]
   from   = "/cms"
   to     = "/admin.html"
@@ -55,7 +60,7 @@
   to     = "/admin.html"
   status = 200
 
-# 404 → index for SPA fallback (if needed later)
+# 404 → home
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
