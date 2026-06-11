@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Inside the Aavartam platform: portfolio command centre, modules & deliverables engine, AI workbench, deck generation, virtual AI consultants and weekly check-ins — one workspace for the full engagement lifecycle.">
+  <meta name="description" content="Inside the Aavartam platform: portfolio command centre, project workspace, modules & findings, AI workbench & knowledge base, agile planner, meeting platform, virtual agents and the expert network — shown on real product screens.">
   <meta property="og:title" content="Platform — Aavartam">
-  <meta property="og:description" content="One workspace for the full consulting engagement lifecycle: live portfolio health, structured delivery, grounded AI research, deck generation and virtual consultants.">
+  <meta property="og:description" content="One workspace for strategy, operations and projects — real product screens, not mockups.">
   <meta property="og:type" content="website">
   <title>Platform — Aavartam</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
 <!-- NAVIGATION -->
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-mark">
-      <svg viewBox="0 0 16 16" fill="none"><path d="M13.5 8A5.5 5.5 0 1 1 11 3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13.6 1.6v2.6H11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <span>Aavartam</span>
+  <a href="index.html" class="nav-logo" aria-label="Aavartam home">
+    <svg class="logo-swoosh" viewBox="0 0 64 30" fill="none" aria-hidden="true">
+      <path d="M1.5 28.5 C 14 25, 30 8, 62.5 3.5 C 36 9.5, 14 19.5, 1.5 28.5 Z" fill="#E8A23B"/>
+    </svg>
+    <span class="logo-word">AAVARTAM</span>
   </a>
   <div class="nav-links">
     <a href="platform.html">Platform</a>
     <a href="solutions.html">Solutions</a>
+    <a href="security.html">Security</a>
     <a href="pricing.html">Pricing</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -40,6 +41,7 @@
 <nav class="mobile-nav" id="mobile-nav">
   <a href="platform.html">Platform</a>
   <a href="solutions.html">Solutions</a>
+  <a href="security.html">Security</a>
   <a href="pricing.html">Pricing</a>
   <a href="contact.html">Contact</a>
   <a href="contact.html" class="btn btn-primary btn-lg" style="width:fit-content">Book a Demo</a>
@@ -49,211 +51,106 @@
 <section class="page-hero">
   <div class="container">
     <span class="label">The Platform</span>
-    <h1 class="display-xl" style="margin-top:0.75rem">The full engagement lifecycle,<br><em>in one workspace</em></h1>
-    <p class="body-lg">From the day an engagement is signed to the day it renews — structure it, deliver it with AI leverage, and watch its health live. No separate trackers, research tools or deck software.</p>
+    <h1 class="display-xl" style="margin-top:0.75rem">Real screens.<br><em>Real strategic work.</em></h1>
+    <p class="body-lg">Everything below is the actual product — the workspace where strategy, operations and projects get structured, delivered and watched. No mockups, no concept art.</p>
   </div>
 </section>
 
 <!-- FEATURE SPLITS -->
-<section class="section" style="padding-top:1rem">
+<section class="section" style="padding-top:0.5rem">
   <div class="container">
 
     <!-- 1. Portfolio Command Centre -->
     <div class="split reveal" id="portfolio">
       <div class="split-copy">
         <span class="label">Portfolio Command Centre</span>
-        <h2 class="display-md">Every engagement. One screen. Live.</h2>
-        <p>The Monday-morning view every practice lead wants: all engagements with their health status, engagement type, financial profile and module progress — filterable by consultant, type and health. The at-risk work surfaces itself.</p>
+        <h2 class="display-md">Every project. One screen. Live.</h2>
+        <p>The Monday-morning view every leader wants: all projects organised by health — On Track, Watch, At Risk, Delivered — with partner, office and progress against plan on every card. The work that needs attention surfaces itself.</p>
         <ul class="split-list">
-          <li><strong>Live health states</strong> — On Track, Delayed and At Risk, rolled up from real deliverable progress, not self-reported optimism</li>
-          <li><strong>Powerful filters</strong> — slice by engagement type, health, consultant or free-text search</li>
-          <li><strong>Instant onboarding</strong> — import an existing client list by CSV and be live the same day</li>
+          <li><strong>Health-first board</strong> — projects grouped by live status, derived from real progress, not self-reported optimism</li>
+          <li><strong>Filters that match how you think</strong> — by office, partner, stage and health, with instant search</li>
+          <li><strong>Same-day onboarding</strong> — import your current project list by CSV and the board is live</li>
         </ul>
       </div>
-      <div class="split-media" aria-hidden="true">
-        <div class="mini-panel">
-          <div class="ph"><span>Portfolio Health</span><span class="badge accent">Live</span></div>
-          <div class="mock-kpis" style="grid-template-columns:repeat(3,1fr)">
-            <div class="mock-kpi"><div class="k">On Track</div><div class="v accent">17</div></div>
-            <div class="mock-kpi"><div class="k">Delayed</div><div class="v" style="color:var(--amber)">5</div></div>
-            <div class="mock-kpi"><div class="k">At Risk</div><div class="v" style="color:var(--red)">2</div></div>
-          </div>
-        </div>
-        <div class="mini-panel">
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">Meridian Foods — Growth Strategy</span><span class="badge ok">On Track</span></div>
-          <div class="tree-row"><span class="dotc a"></span><span class="grow">Northgate Logistics — Operations</span><span class="badge warn">Delayed</span></div>
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">Calyx Health — M&amp;A Due Diligence</span><span class="badge ok">On Track</span></div>
-          <div class="tree-row"><span class="dotc n"></span><span class="grow">Vantor Industries — Digital &amp; AI</span><span class="badge risk">At Risk</span></div>
+      <div class="split-media">
+        <div class="shot">
+          <img src="assets/img/screen-portfolio.png" alt="Aavartam portfolio command centre showing project health board" loading="lazy" width="1440" height="900">
         </div>
       </div>
     </div>
 
-    <!-- 2. Engagement Workspace -->
+    <!-- 2. Project workspace -->
     <div class="split flip reveal" id="workspace">
       <div class="split-copy">
-        <span class="label">Engagement Workspace</span>
-        <h2 class="display-md">A structured home for every client</h2>
-        <p>Each engagement gets a workspace built around how consulting work actually runs: an engagement type, the dimensions you're assessing, a five-year financial profile and the live module plan — all in one place, all editable in seconds.</p>
+        <span class="label">Project Workspace</span>
+        <h2 class="display-md">A structured home for every engagement</h2>
+        <p>Each project carries its financial profile, type, health and active module on one screen. Revenue, growth and EBITDA sit beside the state of the work — because strategic decisions need both at once.</p>
         <ul class="split-list">
-          <li><strong>8 engagement types</strong> — from Growth Strategy and Market Entry to Financial Restructuring and M&amp;A Due Diligence</li>
-          <li><strong>Assessment dimensions</strong> — five per engagement type, each with status and narrative, so scope is explicit from day one</li>
-          <li><strong>Financial profile</strong> — revenue, growth and EBITDA across a five-year window, with margins calculated for you</li>
+          <li><strong>Typed projects</strong> — Growth Strategy, Operations Improvement, M&amp;A Due Diligence, Digital &amp; AI Transformation and more</li>
+          <li><strong>Financial profile built in</strong> — multi-year revenue, growth and EBITDA with margins calculated for you</li>
+          <li><strong>Active module focus</strong> — the module in flight, its research questions, resources and desired output, front and centre</li>
         </ul>
       </div>
-      <div class="split-media" aria-hidden="true">
-        <div class="mini-panel">
-          <div class="ph"><span>Meridian Foods</span><span class="badge accent">Growth Strategy</span></div>
-          <div class="mock-kpis" style="grid-template-columns:repeat(3,1fr)">
-            <div class="mock-kpi"><div class="k">Revenue</div><div class="v">₹142 Cr</div></div>
-            <div class="mock-kpi"><div class="k">Growth</div><div class="v accent">+18%</div></div>
-            <div class="mock-kpi"><div class="k">EBITDA</div><div class="v">₹21 Cr</div></div>
-          </div>
-        </div>
-        <div class="mini-panel">
-          <div class="ph"><span>Engagement Dimensions</span></div>
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">Market Opportunity</span><span class="badge ok">Complete</span></div>
-          <div class="tree-row"><span class="dotc a"></span><span class="grow">Competitive Position</span><span class="badge warn">In Progress</span></div>
-          <div class="tree-row"><span class="dotc a"></span><span class="grow">Revenue Model</span><span class="badge warn">In Progress</span></div>
-          <div class="tree-row"><span class="dotc n"></span><span class="grow">Growth Levers</span><span class="badge neutral">Not Started</span></div>
+      <div class="split-media">
+        <div class="shot">
+          <img src="assets/img/screen-engagement.png" alt="Aavartam project workspace with financial profile and active module" loading="lazy" width="1440" height="900">
         </div>
       </div>
     </div>
 
-    <!-- 3. Modules & Deliverables -->
+    <!-- 3. Modules & findings -->
     <div class="split reveal" id="modules">
       <div class="split-copy">
-        <span class="label">Modules &amp; Deliverables Engine</span>
-        <h2 class="display-md">Delivery structure you never rebuild</h2>
-        <p>Choose the engagement type and Aavartam scaffolds the whole workplan — five modules, each with its deliverables. Update status, progress and notes at deliverable level; module and engagement health roll up automatically. No more bespoke trackers per project.</p>
+        <span class="label">Modules, Questions &amp; Findings</span>
+        <h2 class="display-md">Hypothesis-driven delivery, built into the workspace</h2>
+        <p>Projects decompose into modules; modules decompose into research questions; questions get answered with findings. It's the discipline of a top-tier engagement team, enforced gently by the structure of the tool.</p>
         <ul class="split-list">
-          <li><strong>Auto-scaffolded workplans</strong> — proven module and deliverable structures per engagement type, editable to fit</li>
-          <li><strong>Deliverable-level tracking</strong> — status, percent progress and working notes on every output</li>
-          <li><strong>Active module focus</strong> — pick the module in flight, define the outcome, run the checklist, attach resources</li>
+          <li><strong>Workplans in one click</strong> — proven module structures generated per project type, editable to fit</li>
+          <li><strong>Findings, not vibes</strong> — each question carries its research approach, status and evidence</li>
+          <li><strong>AI-generated questions</strong> — agents propose the research questions a module needs, you keep editorial control</li>
         </ul>
       </div>
-      <div class="split-media" aria-hidden="true">
-        <div class="mini-panel">
-          <div class="ph"><span>Market Sizing &amp; Segmentation</span><span class="badge warn">In Progress</span></div>
-          <div class="tree-row"><span class="branch">├──</span><span class="dotc g"></span><span class="grow">TAM/SAM/SOM model</span><span class="pct">100%</span></div>
-          <div class="tree-row"><span class="branch">├──</span><span class="dotc a"></span><span class="grow">Segment priority matrix</span><span class="pct">60%</span></div>
-          <div class="tree-row"><span class="branch">└──</span><span class="dotc n"></span><span class="grow">Customer needs map</span><span class="pct">0%</span></div>
-        </div>
-        <div class="mini-panel">
-          <div class="ph"><span>Competitive Landscape</span><span class="badge neutral">Not Started</span></div>
-          <div class="tree-row"><span class="branch">├──</span><span class="dotc n"></span><span class="grow">Competitor profiles</span><span class="pct">0%</span></div>
-          <div class="tree-row"><span class="branch">└──</span><span class="dotc n"></span><span class="grow">Positioning map</span><span class="pct">0%</span></div>
+      <div class="split-media">
+        <div class="shot">
+          <img src="assets/img/screen-modules.png" alt="Aavartam project modules with research questions and recorded findings" loading="lazy" width="1440" height="900">
         </div>
       </div>
     </div>
 
-    <!-- 4. AI Workbench -->
+    <!-- 4. Workbench -->
     <div class="split flip reveal" id="workbench">
       <div class="split-copy">
         <span class="label">AI Workbench &amp; Knowledge Base</span>
-        <h2 class="display-md">AI that knows your client, not just the internet</h2>
-        <p>Upload call transcripts, company profiles, consultant notes and strategy documents. Aavartam extracts dozens of structured facts per document and builds a grounded context layer — so every research run, chat and generated output starts from what you already know.</p>
+        <h2 class="display-md">AI that knows your engagement, not just the internet</h2>
+        <p>Proposals, steering-committee minutes, client transcripts, primary and secondary research — indexed into the engagement's knowledge base. Ask anything; the answer is grounded in your sources. Studio actions run the heavyweight work.</p>
         <ul class="split-list">
-          <li><strong>Automatic extraction</strong> — transcripts and documents become structured facts, summaries and module-level notes</li>
-          <li><strong>Research studio</strong> — market sizing, competitive landscape, risk assessment and playbook generation on demand</li>
-          <li><strong>Grounded chat</strong> — every answer is anchored in the engagement's own knowledge base, not generic output</li>
+          <li><strong>Source-grounded chat</strong> — select the sources, ask the question, get an answer anchored in your own documents</li>
+          <li><strong>Studio actions</strong> — hypothesis trees, interview plans, synthesis per question, SCQA steering-committee reports, competitor tracking</li>
+          <li><strong>One library, every output</strong> — upload a document once and every agent works from it</li>
         </ul>
       </div>
-      <div class="split-media" aria-hidden="true">
-        <div class="mini-panel">
-          <div class="ph"><span>Knowledge Base</span><span class="badge accent">4 docs ingested</span></div>
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">Discovery call transcript</span><span class="pct">38 facts</span></div>
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">Company profile</span><span class="pct">24 facts</span></div>
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">FY24–25 financial pack</span><span class="pct">17 facts</span></div>
-        </div>
-        <div class="chat-bubble user">
-          <div class="who">You</div>
-          What are the three biggest risks to the Tier-2 city expansion?
-        </div>
-        <div class="chat-bubble">
-          <div class="who">Aavartam</div>
-          Based on the discovery transcript and financial pack: distributor concentration (62% via two partners), thin working capital ahead of the festive cycle, and an unresolved pricing gap vs the regional leader…
+      <div class="split-media">
+        <div class="shot">
+          <img src="assets/img/screen-workbench.png" alt="Aavartam AI workbench with indexed source library and studio actions" loading="lazy" width="1440" height="900">
         </div>
       </div>
     </div>
 
-    <!-- 5. Decks -->
-    <div class="split reveal" id="decks">
+    <!-- 5. Planner -->
+    <div class="split reveal" id="planner">
       <div class="split-copy">
-        <span class="label">Deck &amp; Document Generation</span>
-        <h2 class="display-md">Board-ready outputs in minutes, not weekends</h2>
-        <p>Generate consulting-grade presentations and documents straight from live engagement data — the structure, the charts and the narrative. Your team edits and elevates instead of assembling from scratch at midnight.</p>
+        <span class="label">Agile Project Planning</span>
+        <h2 class="display-md">Strategy, run with the discipline of a sprint</h2>
+        <p>The planner turns modules and research questions into a working agile board — tasks with owners, priorities, due dates and tags, moving through Not Started, In Progress, In Review and Completed.</p>
         <ul class="split-list">
-          <li><strong>Consulting formats</strong> — executive summary, competitive matrices, financial views, timelines and module status</li>
-          <li><strong>Always current</strong> — outputs pull from the engagement record, so the deck matches reality on the day you present</li>
-          <li><strong>Polished delivery</strong> — print-ready rendering, PDF export and your firm's branding</li>
+          <li><strong>Import from modules</strong> — research questions become tasks in one click, traced back to the strategy they advance</li>
+          <li><strong>AI task generation</strong> — two weeks of practical work proposed from the project's current state</li>
+          <li><strong>A rhythm leaders can see</strong> — completion rolls up to project health on the portfolio board</li>
         </ul>
       </div>
-      <div class="split-media" aria-hidden="true">
-        <div class="mini-panel">
-          <div class="ph"><span>Generated Deck — Growth Strategy Review</span><span class="badge accent">12 slides</span></div>
-          <div class="mock-kpis" style="grid-template-columns:repeat(3,1fr)">
-            <div class="mock-kpi" style="aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:flex-end"><div class="k">01</div><div style="font-size:0.66rem;color:var(--text-secondary)">Executive Summary</div></div>
-            <div class="mock-kpi" style="aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:flex-end"><div class="k">02</div><div style="font-size:0.66rem;color:var(--text-secondary)">Market Sizing</div></div>
-            <div class="mock-kpi" style="aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:flex-end"><div class="k">03</div><div style="font-size:0.66rem;color:var(--text-secondary)">Competitive Map</div></div>
-            <div class="mock-kpi" style="aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:flex-end"><div class="k">04</div><div style="font-size:0.66rem;color:var(--text-secondary)">Financial View</div></div>
-            <div class="mock-kpi" style="aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:flex-end"><div class="k">05</div><div style="font-size:0.66rem;color:var(--text-secondary)">Module Status</div></div>
-            <div class="mock-kpi" style="aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:flex-end"><div class="k">06</div><div style="font-size:0.66rem;color:var(--text-secondary)">Roadmap</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. Virtual consultants -->
-    <div class="split flip reveal" id="virtual">
-      <div class="split-copy">
-        <span class="label">Virtual AI Consultants</span>
-        <h2 class="display-md">Extend your bench with voice and video AI</h2>
-        <p>Launch a voice or video AI consultant session that's been briefed on the specific engagement before it starts — the client's numbers, modules, risks and history. Use it for working sessions, structured client conversations or coverage between visits.</p>
-        <ul class="split-list">
-          <li><strong>Engagement-briefed</strong> — sessions are grounded in the client's knowledge base, not a blank prompt</li>
-          <li><strong>Voice and video modes</strong> — natural conversation with a live notes panel alongside</li>
-          <li><strong>Auto-saved outcomes</strong> — session notes and actions flow back into the engagement record</li>
-        </ul>
-      </div>
-      <div class="split-media" aria-hidden="true">
-        <div class="mini-panel">
-          <div class="ph"><span>Virtual Session — Meridian Foods</span><span class="badge ok">Live</span></div>
-          <div class="chat-bubble" style="margin-top:0.4rem">
-            <div class="who">AI Consultant</div>
-            Before we discuss the segment matrix — last week's check-in flagged the distributor margin issue. Should we pressure-test the Tier-2 pricing assumption first?
-          </div>
-          <div class="chat-bubble user">
-            <div class="who">Session Notes (auto)</div>
-            ✓ Revisit Tier-2 pricing model · ✓ Distributor margin scenario by Friday · ✓ Segment matrix v2 for next session
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7. Check-ins & meetings -->
-    <div class="split reveal" id="checkins">
-      <div class="split-copy">
-        <span class="label">Check-ins, KPIs &amp; Meetings</span>
-        <h2 class="display-md">An operating rhythm that runs itself</h2>
-        <p>Weekly structured check-ins capture progress, wins, blockers and commitments in minutes — AI writes the summary. The meeting assistant runs structured session flows and captures actions, risks and decisions, so the record updates while you stay in the conversation.</p>
-        <ul class="split-list">
-          <li><strong>Weekly check-ins</strong> — progress, wins, blockers and next-week commitments, with AI-generated summaries and full history</li>
-          <li><strong>KPI tracking</strong> — define the metrics that matter per engagement and log them at every check-in</li>
-          <li><strong>Meeting assistant</strong> — structured flows for discovery, strategy and review sessions with automatic action capture</li>
-        </ul>
-      </div>
-      <div class="split-media" aria-hidden="true">
-        <div class="mini-panel">
-          <div class="ph"><span>Weekly Check-in — Wk 23</span><span class="badge accent">AI Summary</span></div>
-          <div class="chat-bubble" style="margin-top:0.4rem">
-            Module progress moved 52% → 64%. Win: segment matrix validated with the sales team. Blocker: distributor data still pending — escalated to CFO. Next week: pricing scenarios + customer needs map kickoff.
-          </div>
-        </div>
-        <div class="mini-panel">
-          <div class="ph"><span>KPIs</span></div>
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">Monthly revenue run-rate</span><span class="pct">↑ ₹12.4 Cr</span></div>
-          <div class="tree-row"><span class="dotc g"></span><span class="grow">Distributor count</span><span class="pct">↑ 38</span></div>
-          <div class="tree-row"><span class="dotc a"></span><span class="grow">Gross margin</span><span class="pct">→ 31%</span></div>
+      <div class="split-media">
+        <div class="shot">
+          <img src="assets/img/screen-planner.png" alt="Aavartam agile project planner with tasks across four statuses" loading="lazy" width="1440" height="900">
         </div>
       </div>
     </div>
@@ -261,38 +158,85 @@
   </div>
 </section>
 
-<!-- SECURITY / ARCHITECTURE NOTE -->
-<section class="section section-alt">
+<!-- SUPPORTING CAPABILITIES -->
+<section class="section section-alt" id="virtual">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="label">Around the Core</span>
+      <h2 class="display-lg">The rest of the<br><em>delivery machine</em></h2>
+    </div>
+    <div class="grid-2 reveal">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 2v4M13 2v4M3 9h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Meeting Platform</h3>
+        <p>Structured flows for discovery, strategy, steering-committee and review meetings. Actions, risks and decisions captured into the project record automatically — every conversation compounds the knowledge base instead of evaporating.</p>
+        <div class="tag-row"><span class="tag">Structured Flows</span><span class="tag">Auto Capture</span><span class="tag">Project Record</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Virtual Consultants — Voice &amp; Video</h3>
+        <p>Live consultant sessions in voice or video, briefed on the specific engagement before they start — the numbers, the modules, the open risks. Session notes and actions flow back into the record automatically.</p>
+        <div class="tag-row"><span class="tag">Engagement-Briefed</span><span class="tag">Voice + Video</span><span class="tag">Auto Notes</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h6M7 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Decks &amp; Documents</h3>
+        <p>Board-ready presentations and polished documents generated from the live project record — executive summaries, competitive matrices, financial views, timelines. Your team edits and elevates instead of assembling at midnight.</p>
+        <div class="tag-row"><span class="tag">Consulting Format</span><span class="tag">PDF Export</span><span class="tag">Your Branding</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M10 3l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4l2-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Expert Network &amp; Resources</h3>
+        <p>A curated network of operators, domain experts and specialist consultants — plus playbooks and market research — matched to your engagement and brought in when a question needs someone who has done it before.</p>
+        <div class="tag-row"><span class="tag">Curated Experts</span><span class="tag">Playbooks</span><span class="tag">On Your Terms</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNDER THE HOOD -->
+<section class="section section-navy">
   <div class="container">
     <div class="section-header centered reveal">
       <span class="label">Under the Hood</span>
-      <h2 class="display-lg">Fast to adopt, <em>safe by design</em></h2>
+      <h2 class="display-lg">Fast to adopt,<br><em>safe by design</em></h2>
     </div>
     <div class="grid-3 reveal">
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2l6 3v5c0 4-2.7 6.8-6 8-3.3-1.2-6-4-6-8V5l6-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <h3>Keys stay server-side</h3>
-        <p>AI calls run through a secure server-side proxy. API keys never touch the browser, and client data never becomes anyone's training set.</p>
+        <h3>No training on your data</h3>
+        <p>AI runs on enterprise APIs under zero-training terms, through a server-side proxy. Keys never reach the browser, and your client data never becomes anyone's model.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <h3>No installs, no IT project</h3>
-        <p>Aavartam runs in the browser on managed cloud infrastructure. Onboard your engagement list and be working the same day.</p>
+        <p>Runs in the browser on managed cloud infrastructure. Import your project list and be working the same day — private cloud available for regulated environments.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h3>Grounded, not generic</h3>
-        <p>Every AI output is anchored to the engagement's own structured knowledge base — which means it's checkable, citable and client-safe.</p>
+        <p>Every AI output is anchored to the engagement's own knowledge base — which means it's specific, checkable and safe to put in front of a client.</p>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal">
+      <a href="security.html" class="btn btn-ghost">Read the full security commitments</a>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-band">
+<section class="cta-band" style="border-top:1px solid var(--border-navy)">
   <span class="label">See It Live</span>
-  <h2 class="display-lg" style="margin-top:0.75rem">The best demo is<br><em>your own engagement</em></h2>
-  <p class="body-lg" style="max-width:600px;margin:1.25rem auto 0">Bring one live engagement to the demo. We'll structure it in Aavartam in front of you — modules, knowledge base and first AI outputs included.</p>
+  <h2 class="display-lg" style="margin-top:0.75rem">The best demo is<br><em>your own project</em></h2>
+  <p class="body-lg" style="max-width:600px;margin:1.25rem auto 0">Bring one live initiative to the demo. We'll structure it in Aavartam in front of you — modules, knowledge base, planner and first agent outputs included.</p>
   <div class="hero-cta">
     <a href="contact.html" class="btn btn-primary btn-lg">Book a Demo
       <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -307,29 +251,30 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="nav-logo">
-          <div class="nav-logo-mark">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M13.5 8A5.5 5.5 0 1 1 11 3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13.6 1.6v2.6H11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <span>Aavartam</span>
+          <svg class="logo-swoosh" viewBox="0 0 64 30" fill="none" aria-hidden="true">
+            <path d="M1.5 28.5 C 14 25, 30 8, 62.5 3.5 C 36 9.5, 14 19.5, 1.5 28.5 Z" fill="#E8A23B"/>
+          </svg>
+          <span class="logo-word">AAVARTAM</span>
         </a>
-        <p><em>Aavartam</em> (Sanskrit): a cycle, a recurring rhythm. The engagement operating platform for consulting firms, independent consultants and corporate strategy teams.</p>
+        <p><em>Aavartam</em> (Sanskrit): a cycle, a recurring rhythm. The strategic management platform for consulting firms, family offices, growing businesses and independent consultants.</p>
       </div>
       <div class="footer-col">
         <h4>Platform</h4>
         <ul>
           <li><a href="platform.html#portfolio">Portfolio Command Centre</a></li>
-          <li><a href="platform.html#modules">Modules &amp; Deliverables</a></li>
-          <li><a href="platform.html#workbench">AI Workbench</a></li>
-          <li><a href="platform.html#decks">Deck Generation</a></li>
-          <li><a href="platform.html#virtual">Virtual AI Consultants</a></li>
+          <li><a href="platform.html#workbench">AI Workbench &amp; Knowledge Base</a></li>
+          <li><a href="platform.html#planner">Agile Project Planning</a></li>
+          <li><a href="platform.html#virtual">Virtual Agents &amp; Consultants</a></li>
+          <li><a href="security.html">Data Security &amp; Privacy</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
-          <li><a href="solutions.html#firms">Boutique Consulting Firms</a></li>
+          <li><a href="solutions.html#firms">Consulting Firms</a></li>
+          <li><a href="solutions.html#family-offices">Family Offices</a></li>
+          <li><a href="solutions.html#smb">High-Growth SMBs</a></li>
           <li><a href="solutions.html#independents">Independent Consultants</a></li>
-          <li><a href="solutions.html#corporate">Corporate Strategy &amp; PE</a></li>
         </ul>
       </div>
       <div class="footer-col">
