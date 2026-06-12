@@ -5,9 +5,9 @@
 ============================================================ */
 :root {
   /* Brand palette — from the Aavartam logo */
-  --navy:          #14203F;   /* logo background navy */
-  --navy-deep:     #0D1730;
-  --navy-soft:     #1E2C52;
+  --navy:          #1B2034;   /* logo background navy */
+  --navy-deep:     #121624;
+  --navy-soft:     #283050;
   --gold:          #E8A23B;   /* swoosh gold */
   --gold-deep:     #D98E2B;
   --gold-dim:      rgba(217,142,43,0.12);
@@ -22,7 +22,7 @@
   --border-bright: rgba(20,32,63,0.20);
 
   /* Text on light */
-  --text-primary:  #15203D;
+  --text-primary:  #1B2034;
   --text-secondary:#48526B;
   --text-muted:    #8A90A2;
 
@@ -173,9 +173,8 @@ ul { list-style: none; }
   letter-spacing: 0.06em;
   color: var(--cream);
 }
-.nav-logo .logo-swoosh { width: 40px; height: 22px; flex-shrink: 0; }
-.nav-logo .logo-word { transform: translateY(1px); }
-.logo-on-light { color: var(--navy); }
+.nav-logo .logo-img { height: 42px; width: auto; display: block; }
+.footer-brand .logo-img { height: 50px; }
 
 /* ── Navigation ── */
 .nav {
@@ -320,7 +319,7 @@ ul { list-style: none; }
   box-shadow: var(--shadow-card);
   background: var(--bg-surface);
 }
-.shot img { width: 100%; display: block; }
+.shot img { width: 100%; height: auto; display: block; }
 .shot-bar {
   display: flex;
   align-items: center;
