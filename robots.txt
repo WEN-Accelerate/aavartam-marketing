@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /thanks.html
+Disallow: /pitch-deck.html
+
+Sitemap: https://aavartam-marketing.netlify.app/sitemap.xml

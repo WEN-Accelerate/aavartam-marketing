@@ -779,3 +779,121 @@ ul { list-style: none; }
 .scroll-top:hover { background: var(--gold); border-color: var(--gold); }
 .scroll-top:hover svg { color: var(--navy-deep); }
 .scroll-top svg { width: 16px; height: 16px; color: var(--text-secondary); }
+
+/* ── Architecture stack diagram ── */
+.arch-stack { display: grid; gap: 0.9rem; }
+.arch-layer {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  background: var(--navy-soft);
+  border: 1px solid var(--border-navy);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.6rem;
+}
+@media (max-width: 720px) { .arch-layer { grid-template-columns: 1fr; gap: 0.6rem; } }
+.arch-layer .al-num {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+.arch-layer h3 { font-size: 1.05rem; font-weight: 600; color: var(--cream); }
+.arch-layer p { font-size: 0.86rem; color: var(--cream-soft); line-height: 1.6; margin-bottom: 0.8rem; }
+.arch-layer .tag-row { margin-top: 0; }
+
+/* ── Cycle (flywheel) diagram ── */
+.cycle-wrap {
+  position: relative;
+  max-width: 560px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+.cycle-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 17%;
+  border: 2px dashed rgba(217,142,43,0.45);
+  border-radius: 50%;
+}
+.cycle-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 31%;
+  aspect-ratio: 1;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  text-align: center;
+  color: var(--cream);
+  box-shadow: var(--shadow-card);
+  padding: 1rem;
+}
+.cycle-center .cc-word { font-family: var(--font-display); font-size: clamp(0.8rem, 1.4vw, 1rem); letter-spacing: 0.08em; }
+.cycle-center .cc-sub { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+.cycle-node {
+  position: absolute;
+  width: 38%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+.cycle-node h4 { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); }
+.cycle-node h4 span { color: var(--gold-deep); margin-right: 0.3rem; }
+.cycle-node p { font-size: 0.7rem; color: var(--text-secondary); line-height: 1.45; margin-top: 0.2rem; }
+.cycle-node.n1 { top: 0; left: 50%; transform: translateX(-50%); }
+.cycle-node.n2 { top: 50%; right: 0; transform: translateY(-50%); }
+.cycle-node.n3 { bottom: 0; left: 50%; transform: translateX(-50%); }
+.cycle-node.n4 { top: 50%; left: 0; transform: translateY(-50%); }
+@media (max-width: 560px) {
+  .cycle-wrap { aspect-ratio: auto; max-width: 380px; display: grid; gap: 0.8rem; }
+  .cycle-wrap::before, .cycle-center { display: none; }
+  .cycle-node { position: static; width: 100%; transform: none; }
+}
+
+/* ── Mini concept flow ── */
+.flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.flow-step {
+  flex: 1 1 0;
+  min-width: 110px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 0.9rem;
+  text-align: center;
+}
+.flow-step h5 { font-size: 0.78rem; font-weight: 700; color: var(--text-primary); }
+.flow-step p { font-size: 0.66rem; color: var(--text-muted); line-height: 1.4; margin-top: 0.15rem; }
+.flow-arrow { display: flex; align-items: center; color: var(--gold-deep); font-weight: 700; }
+.concept-panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.concept-panel .cp-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}

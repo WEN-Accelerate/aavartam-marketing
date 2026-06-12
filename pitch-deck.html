@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Aavartam — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2034; --navy-deep:#121624; --navy-soft:#283050;
+  --gold:#E8A23B; --gold-deep:#D98E2B;
+  --cream:#F6F1E7; --cream-soft:#C3C8D8; --cream-muted:#7E879F;
+  --bg:#F8F4EC; --ink:#1B2034; --ink-soft:#48526B; --ink-muted:#8A90A2;
+  --border:rgba(20,32,63,0.12); --border-navy:rgba(246,241,231,0.14);
+  --fd:'Fraunces',Georgia,serif; --fb:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--navy-deep);color:var(--ink)}
+.slide{
+  width:100vw;height:100vh;
+  scroll-snap-align:start;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(2rem,5vw,4.5rem) clamp(2rem,6vw,5.5rem);
+  position:relative;overflow:hidden;background:var(--bg);
+}
+.deck{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory}
+.slide.navy{background:var(--navy);color:var(--cream)}
+.slide.navy .k{color:var(--gold)}
+.slide.navy h1,.slide.navy h2{color:var(--cream)}
+.slide.navy h1 em,.slide.navy h2 em{color:var(--gold)}
+.slide.navy p{color:var(--cream-soft)}
+.k{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.1rem}
+h1{font-family:var(--fd);font-weight:300;font-size:clamp(2.4rem,5.2vw,4.4rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+h2{font-family:var(--fd);font-weight:300;font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.14;letter-spacing:-.02em;color:var(--ink)}
+h1 em,h2 em{font-style:italic;color:var(--gold-deep)}
+.sub{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.65;color:var(--ink-soft);max-width:62ch;margin-top:1.2rem}
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:2.2rem}
+.cols.c4{grid-template-columns:repeat(4,1fr)}
+.cols.c3{grid-template-columns:repeat(3,1fr)}
+.tile{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.4rem;box-shadow:0 1px 3px rgba(20,32,63,.07)}
+.slide.navy .tile{background:var(--navy-soft);border-color:var(--border-navy)}
+.tile .tk{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:.45rem}
+.tile h3{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.slide.navy .tile h3{color:var(--cream)}
+.tile p{font-size:.84rem;line-height:1.55;color:var(--ink-soft)}
+.slide.navy .tile p{color:var(--cream-soft)}
+.logo{height:46px;width:auto}
+.shotbox{border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 18px 48px rgba(13,23,48,.25)}
+.shotbox img{width:100%;height:auto;display:block}
+.split{display:grid;grid-template-columns:1.05fr 1.3fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;margin-top:1rem}
+.bullets{margin-top:1.4rem;display:grid;gap:.7rem;list-style:none}
+.bullets li{display:flex;gap:.65rem;font-size:.95rem;line-height:1.55;color:var(--ink-soft)}
+.slide.navy .bullets li{color:var(--cream-soft)}
+.bullets li::before{content:'—';color:var(--gold-deep);font-weight:700;flex-shrink:0}
+.bullets strong{color:var(--ink);font-weight:600}
+.slide.navy .bullets strong{color:var(--cream)}
+.layer{display:grid;grid-template-columns:230px 1fr;gap:1.4rem;background:var(--navy-soft);border:1px solid var(--border-navy);border-left:4px solid var(--gold);border-radius:10px;padding:1rem 1.4rem;align-items:center}
+.layer h3{font-size:.95rem;color:var(--cream)}
+.layer .ln{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.layer p{font-size:.8rem;color:var(--cream-soft);line-height:1.5}
+.stack{display:grid;gap:.7rem;margin-top:2rem}
+.foot{position:absolute;bottom:1.4rem;left:0;right:0;display:flex;justify-content:space-between;padding:0 clamp(2rem,6vw,5.5rem);font-size:.68rem;color:var(--ink-muted);letter-spacing:.06em}
+.slide.navy .foot{color:var(--cream-muted)}
+.counter{position:fixed;bottom:1.2rem;right:1.4rem;z-index:50;font-size:.72rem;color:var(--cream-muted);background:rgba(18,22,36,.7);backdrop-filter:blur(6px);padding:.3rem .7rem;border-radius:100px;border:1px solid var(--border-navy)}
+.hint{position:fixed;bottom:1.2rem;left:1.4rem;z-index:50;font-size:.68rem;color:var(--cream-muted);background:rgba(18,22,36,.7);padding:.3rem .7rem;border-radius:100px;border:1px solid var(--border-navy)}
+@media(max-width:880px){
+  .cols.c4,.cols.c3,.cols{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr}
+  .slide{height:auto;min-height:100vh}
+}
+@media print{
+  .deck{height:auto;overflow:visible}
+  .slide{width:100%;height:100vh;page-break-after:always;break-after:page}
+  .counter,.hint{display:none}
+  @page{size:landscape;margin:0}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- 1 · TITLE -->
+<section class="slide navy" style="align-items:flex-start">
+  <img class="logo" src="assets/img/logo-navy.png" alt="AAVARTAM" style="height:64px;margin-bottom:3rem">
+  <h1>The Strategic Management<br>Platform</h1>
+  <p class="sub" style="color:var(--cream-soft)">One workspace to run strategy, operations and projects — with a team of specialist AI agents doing the analysis, and a network of human experts behind it.</p>
+  <p style="margin-top:3rem;font-size:.8rem;color:var(--cream-muted)">Confidential · 2026</p>
+  <div class="foot"><span>AAVARTAM</span><span><em style="font-family:var(--fd)">Aavartam</em> (Sanskrit): a cycle, a recurring rhythm</span></div>
+</section>
+
+<!-- 2 · THE PROBLEM -->
+<section class="slide">
+  <div class="k">The Problem</div>
+  <h2>Strategy management isn't the problem.<br><em>Scarce judgement is.</em></h2>
+  <p class="sub">Anyone can write a strategy. Organisations fail because they can't afford enough experienced judgement, applied continuously, to make it real.</p>
+  <div class="cols">
+    <div class="tile"><div class="tk">Consulting Firms &amp; Their Clients</div><h3>Clients buy outcomes; the model sells documents</h3><p>Most billable hours go to junior research and slide production. When the engagement ends, the judgement leaves with the team.</p></div>
+    <div class="tile"><div class="tk">Strategy Offices of Large Corporates</div><h3>A mandate wider than the team</h3><p>A handful of people accountable for initiatives across business units — capacity consumed by chasing status, not changing outcomes.</p></div>
+    <div class="tile"><div class="tk">High-Growth Businesses</div><h3>Complexity compounds faster than leadership</h3><p>The company's biggest bets run on instinct and a spreadsheet, because the judgement they need is priced for someone else.</p></div>
+    <div class="tile"><div class="tk">Independent Consultants</div><h3>All the judgement, none of the machine</h3><p>The expertise is real, but solo means being the analyst, PMO and production studio at midnight. Capacity caps the practice.</p></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>02</span></div>
+</section>
+
+<!-- 3 · THE SOLUTION -->
+<section class="slide navy">
+  <div class="k">The Solution</div>
+  <h2>One platform.<br><em>Three kinds of leverage.</em></h2>
+  <div class="cols c3" style="margin-top:2.5rem">
+    <div class="tile"><div class="tk">01 · The Platform</div><h3>Structure that compounds</h3><p>Every initiative becomes a typed, scoped project — modules, research questions, agile planning, meetings and knowledge in one record, rolled up to live portfolio health.</p></div>
+    <div class="tile"><div class="tk">02 · The AI Agent Team</div><h3>An analyst bench on tap</h3><p>Specialist agents for competitive intelligence, market sizing, data analysis and synthesis — grounded in the engagement's own knowledge base, not the open internet.</p></div>
+    <div class="tile"><div class="tk">03 · The Network</div><h3>Humans, when it matters</h3><p>A curated network of operators and domain experts, matched to the engagement and brought in on your terms — judgement that only comes from having done it before.</p></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>03</span></div>
+</section>
+
+<!-- 4 · THE CYCLE -->
+<section class="slide">
+  <div class="k">How It Works</div>
+  <h2>The Aavartam cycle: <em>context becomes advantage</em></h2>
+  <p class="sub">Every week of strategic work makes the next week smarter — that's the moat.</p>
+  <div class="cols c4" style="margin-top:2.5rem">
+    <div class="tile"><div class="tk">01 · Capture</div><p>Meetings, documents, transcripts and financials enter the project record — nothing evaporates.</p></div>
+    <div class="tile"><div class="tk">02 · Structure</div><p>Knowledge is distilled into facts, modules and research questions — connected, not filed.</p></div>
+    <div class="tile"><div class="tk">03 · Reason</div><p>Agents research, analyse and synthesise over grounded context — to a reviewable standard.</p></div>
+    <div class="tile"><div class="tk">04 · Act</div><p>Decisions, tasks and deliverables ship — and feed straight back into the loop.</p></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>04</span></div>
+</section>
+
+<!-- 5 · PRODUCT: PORTFOLIO -->
+<section class="slide">
+  <div class="split">
+    <div>
+      <div class="k">The Product</div>
+      <h2>Every project.<br>One screen. <em>Live.</em></h2>
+      <ul class="bullets">
+        <li><strong>Health-first portfolio board</strong> — On Track, Watch, At Risk, Delivered</li>
+        <li><strong>Progress vs plan</strong> on every card, derived from real work</li>
+        <li><strong>Filters by office, partner, stage</strong> — the Monday-morning view every leader wants</li>
+      </ul>
+    </div>
+    <div class="shotbox"><img src="assets/img/screen-portfolio.png" alt="Portfolio command centre"></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>05</span></div>
+</section>
+
+<!-- 6 · PRODUCT: WORKBENCH -->
+<section class="slide">
+  <div class="split">
+    <div>
+      <div class="k">The Product</div>
+      <h2>AI that knows the engagement, <em>not just the internet</em></h2>
+      <ul class="bullets">
+        <li><strong>Knowledge base per engagement</strong> — proposals, transcripts, research, indexed once</li>
+        <li><strong>Grounded answers</strong> — cite your sources, checkable before a client sees them</li>
+        <li><strong>Studio actions</strong> — hypotheses, primary research, synthesis, SteerCo reports</li>
+      </ul>
+    </div>
+    <div class="shotbox"><img src="assets/img/screen-workbench.png" alt="AI workbench"></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>06</span></div>
+</section>
+
+<!-- 7 · PRODUCT: DISCIPLINE -->
+<section class="slide">
+  <div class="split">
+    <div>
+      <div class="k">The Product</div>
+      <h2>Top-firm discipline, <em>built into the tool</em></h2>
+      <ul class="bullets">
+        <li><strong>Modules → research questions → findings</strong> — hypothesis-driven delivery by default</li>
+        <li><strong>Agile planner</strong> — questions become tasks with owners, priorities and due dates</li>
+        <li><strong>Everything rolls up</strong> — findings to module health to portfolio view</li>
+      </ul>
+    </div>
+    <div style="display:grid;gap:1rem">
+      <div class="shotbox"><img src="assets/img/screen-modules.png" alt="Modules and findings"></div>
+      <div class="shotbox"><img src="assets/img/screen-planner.png" alt="Agile planner"></div>
+    </div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>07</span></div>
+</section>
+
+<!-- 8 · ARCHITECTURE -->
+<section class="slide navy">
+  <div class="k">The Architecture</div>
+  <h2>Four layers, <em>engineered as one system</em></h2>
+  <div class="stack">
+    <div class="layer"><div><div class="ln">Layer 04 · Experience</div><h3>The Strategic Workspace</h3></div><p>Portfolio command, project workspace, agile planner, meeting platform, AI workbench — one record of truth.</p></div>
+    <div class="layer"><div><div class="ln">Layer 03 · Agentic AI</div><h3>The Agent Bench</h3></div><p>Task-scoped agents with defined outputs, orchestrated against the workplan, human-in-the-loop by design.</p></div>
+    <div class="layer"><div><div class="ln">Layer 02 · Knowledge &amp; Context</div><h3>The Context Engine</h3></div><p>Every artifact distilled into structured knowledge; the right context assembled for every agent, meeting and question.</p></div>
+    <div class="layer"><div><div class="ln">Layer 01 · Foundation</div><h3>Enterprise AI &amp; Trust</h3></div><p>Frontier models on zero-training enterprise terms, engagement-level isolation, private cloud available.</p></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>08</span></div>
+</section>
+
+<!-- 9 · MEETINGS -->
+<section class="slide">
+  <div class="k">The Wedge</div>
+  <h2>All meetings in one place —<br><em>finally connected to the work</em></h2>
+  <p class="sub">Meetings are where strategic context is created and lost. We integrate the meeting platform you already use — or provide one — and wrap every meeting in project context.</p>
+  <div class="cols c3" style="margin-top:2.2rem">
+    <div class="tile"><div class="tk">Before</div><h3>Context in</h3><p>Every participant walks in with an auto-brief assembled from the project's live state.</p></div>
+    <div class="tile"><div class="tk">During</div><h3>Capture built in</h3><p>Your platform or ours — decisions, actions and risks captured while you stay in the conversation.</p></div>
+    <div class="tile"><div class="tk">After</div><h3>Knowledge out</h3><p>Outcomes filed to the project record and knowledge base — one meeting memory per project.</p></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>09</span></div>
+</section>
+
+<!-- 10 · WHO IT'S FOR -->
+<section class="slide">
+  <div class="k">The Market</div>
+  <h2>Four segments, <em>one operating rhythm</em></h2>
+  <div class="cols" style="margin-top:2.2rem">
+    <div class="tile"><div class="tk">Consulting Firms</div><h3>Big-firm rigour without big-firm overhead</h3><p>Standardised delivery, live partner visibility, agent leverage on every engagement.</p></div>
+    <div class="tile"><div class="tk">Corporate Strategy Offices</div><h3>A small central team, accountable for everything</h3><p>Every initiative across business units tracked live; board-ready reporting from the record.</p></div>
+    <div class="tile"><div class="tk">High-Growth SMBs</div><h3>A strategy office they don't have to hire</h3><p>Consulting-grade structure and analysis, owned and run in-house.</p></div>
+    <div class="tile"><div class="tk">Independent Consultants</div><h3>Deliver like a team of five, stay a team of one</h3><p>The analyst, PMO and production studio behind one person's judgement.</p></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>10</span></div>
+</section>
+
+<!-- 11 · BUSINESS MODEL -->
+<section class="slide navy">
+  <div class="k">Business Model</div>
+  <h2>Priced for the practice, <em>not per seat</em></h2>
+  <div class="cols c3" style="margin-top:2.2rem">
+    <div class="tile"><div class="tk">Solo</div><h3>Independent consultants</h3><p>Up to 10 engagements · full platform · 5M AI tokens/month · tailored monthly quote.</p></div>
+    <div class="tile" style="border-color:var(--gold)"><div class="tk">Practice — Most Popular</div><h3>Firms &amp; strategy offices</h3><p>Unlimited engagements · portfolio command · virtual consultants · 25M AI tokens/month.</p></div>
+    <div class="tile"><div class="tk">Programme</div><h3>Enterprises &amp; large programmes</h3><p>Multi-team structure · white-label · private cloud · custom token allocation (100M+).</p></div>
+  </div>
+  <p class="sub" style="margin-top:2rem;color:var(--cream-soft)">Expansion built in: engagements grow → context grows → agent usage grows → expert network attach.</p>
+  <div class="foot"><span>AAVARTAM</span><span>11</span></div>
+</section>
+
+<!-- 12 · TRUST -->
+<section class="slide">
+  <div class="k">Trust</div>
+  <h2>Your client data is <em>not our training data</em></h2>
+  <div class="cols" style="margin-top:2.2rem">
+    <div class="tile"><h3>Zero training, contractually</h3><p>We never train on customer data — and our enterprise model providers are contractually prohibited from doing so.</p></div>
+    <div class="tile"><h3>Architecture, not promises</h3><p>Server-side keys, engagement-level isolation, encryption in transit and at rest, logged data flows.</p></div>
+    <div class="tile"><h3>Plain-English commitments</h3><p>What we touch, where it goes, who sees it, when it's deleted — answered before legal has to ask. DPA and NDA ready.</p></div>
+    <div class="tile"><h3>Private cloud available</h3><p>Enterprise Secure Edition: dedicated VPC, private AI endpoints, immutable audit logs, independent security testing.</p></div>
+  </div>
+  <div class="foot"><span>AAVARTAM</span><span>12</span></div>
+</section>
+
+<!-- 13 · CLOSE -->
+<section class="slide navy" style="text-align:center;align-items:center">
+  <img class="logo" src="assets/img/logo-navy.png" alt="AAVARTAM" style="height:56px;margin-bottom:2.5rem">
+  <h1>Bring one live initiative.<br><em>Watch it become a managed strategy.</em></h1>
+  <p class="sub" style="margin:1.5rem auto 0">A 45-minute working demo: capture, structure, reason, act — on your real project.</p>
+  <p style="margin-top:2.5rem;font-size:.85rem;color:var(--cream-muted)">aavartam-marketing.netlify.app · Book a demo via the website contact page</p>
+  <div class="foot"><span>AAVARTAM</span><span>13</span></div>
+</section>
+
+</div>
+
+<div class="counter" id="counter">1 / 13</div>
+<div class="hint">← → or scroll · Ctrl/Cmd+P to export PDF</div>
+
+<script>
+const deck = document.getElementById('deck');
+const slides = [...document.querySelectorAll('.slide')];
+const counter = document.getElementById('counter');
+function current() {
+  return Math.round(deck.scrollTop / window.innerHeight);
+}
+function go(i) {
+  i = Math.max(0, Math.min(slides.length - 1, i));
+  deck.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' });
+}
+deck.addEventListener('scroll', () => {
+  counter.textContent = (current() + 1) + ' / ' + slides.length;
+}, { passive: true });
+document.addEventListener('keydown', (e) => {
+  if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(current() + 1); }
+  if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(current() - 1); }
+  if (e.key === 'Home') go(0);
+  if (e.key === 'End') go(slides.length - 1);
+});
+</script>
+</body>
+</html>

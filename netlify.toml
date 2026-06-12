@@ -60,6 +60,17 @@
   to     = "/admin.html"
   status = 200
 
+# Pitch deck (unlisted)
+[[redirects]]
+  from   = "/deck"
+  to     = "/pitch-deck.html"
+  status = 200
+
+[[headers]]
+  for = "/pitch-deck.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 # 404 → home
 [[redirects]]
   from   = "/*"
